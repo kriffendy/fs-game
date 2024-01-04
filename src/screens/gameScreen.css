@@ -1,0 +1,30 @@
+.game-title {
+  color: #1772a6;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 40px;
+}
+
+.explore-other-text {
+  font-size: 18px;
+  color: #1772a6;
+  text-decoration: underline;
+  font-weight: 700;
+  text-align: right;
+  margin: 40px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-container {
+  width: 80%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

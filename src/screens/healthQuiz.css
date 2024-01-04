@@ -1,0 +1,48 @@
+.horizontal-flex-container {
+  width: 80%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.game-button-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-img {
+  border-radius: 20px;
+  width: 250px;
+  height: 250px;
+  margin-right: 50px;
+}
+
+.img-game-prompt-splitter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.health-quiz-question {
+  font-size: 30px;
+  margin: 0;
+}
+
+.health-quiz-desc {
+  font-size: 26px;
+  margin: 0 0 20px 0;
+}
+
+.explore-other-text:hover {
+  cursor: pointer;
+}

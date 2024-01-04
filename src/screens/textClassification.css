@@ -1,0 +1,47 @@
+.text-classification-game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-classification-title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.text-game-score-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.text-game-score {
+  font-size: 40px;
+  font-weight: 700;
+  color: red;
+  margin-top: 0;
+}
+
+.text-game-prompt {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 100px;
+}
+
+.text-game-current-word {
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.text-game-timer {
+  font-size: 28px;
+  font-weight: 700;
+}
