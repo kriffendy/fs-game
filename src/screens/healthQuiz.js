@@ -38,6 +38,7 @@ const HealthQuiz = () => {
   const [score, setScore] = useState(0);
   const [isShowingQuestion, setIsShowingQuestion] = useState(true);
   const [currentContentIndex, setCurrentContentIndex] = useState(0);
+  const [prevCorrect, setPrevCorrect] = useState(false);
   const [showImgFadeAnimation, setShowImgFadeAnimation] = useState(false);
 
   useEffect(() => {
@@ -47,15 +48,12 @@ const HealthQuiz = () => {
 
   return (
     <div>
-      {/* <Fade in={showImgFadeAnimation} timeout={1000}>
-        <p className="health-quiz-game-title">
-          Healthy Habits Game classification
-        </p>
-      </Fade> */}
-      {/* <div className="flex-container">
-        <div className="horizontal-flex-container"> */}
-      <p className="health-quiz-score">Score: {score}</p>
-      <div className="flex-container">
+      <div className="health-quiz-score-container">
+        <p className="health-quiz-score-label">Current score:</p>
+        <p className="health-quiz-score">{score}</p>
+      </div>
+
+      <div className="health-quiz">
         <div className="img-game-prompt-splitter">
           <Fade in={showImgFadeAnimation} timeout={1000}>
             <img
@@ -68,6 +66,7 @@ const HealthQuiz = () => {
               isHealthy={content[currentContentIndex].isHealthy}
               setScore={setScore}
               setIsShowingQuestion={setIsShowingQuestion}
+              setPrevCorrect={setPrevCorrect}
             />
           ) : (
             <HealthQuizReasoning
@@ -76,6 +75,7 @@ const HealthQuiz = () => {
               setIsShowingQuestion={setIsShowingQuestion}
               setCurrentContentIndex={setCurrentContentIndex}
               contentLength={content.length}
+              prevCorrect={prevCorrect}
             />
           )}
         </div>

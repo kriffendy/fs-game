@@ -3,7 +3,12 @@ import GameButton from "./gameButton";
 import "../screens/healthQuiz.css";
 import { Fade } from "@mui/material";
 
-const HealthQuizQuestion = ({ setScore, setIsShowingQuestion, isHealthy }) => {
+const HealthQuizQuestion = ({
+  setScore,
+  setIsShowingQuestion,
+  setPrevCorrect,
+  isHealthy,
+}) => {
   const [showQuestion, setShowQuestion] = useState(false);
 
   useEffect(() => {
@@ -14,26 +19,32 @@ const HealthQuizQuestion = ({ setScore, setIsShowingQuestion, isHealthy }) => {
     <div>
       <Fade in={showQuestion} timeout={1000}>
         <p className="health-quiz-question">
-          Does the above image show a healthy or unhealthy habit?
+          Does the displayed image indicate a healthy or unhealthy habit?
         </p>
       </Fade>
       {/* <img src={props.imgSrc} /> */}
       <div className="game-button-flex-container">
         <GameButton
           onClick={() => {
-            if (isHealthy) setScore((score) => score + 1);
+            if (isHealthy) {
+              setScore((score) => score + 1);
+              setPrevCorrect(true);
+            } else setPrevCorrect(false);
             setIsShowingQuestion(false);
           }}
-          style={{ backgroundColor: "green" }}
+          style={{ backgroundColor: "#5dbea3" }}
         >
           HEALTHY
         </GameButton>
         <GameButton
           onClick={() => {
-            if (!isHealthy) setScore((score) => score + 1);
+            if (!isHealthy) {
+              setScore((score) => score + 1);
+              setPrevCorrect(true);
+            } else setPrevCorrect(false);
             setIsShowingQuestion(false);
           }}
-          style={{ backgroundColor: "red" }}
+          style={{ backgroundColor: "#dd7973" }}
         >
           UNHEALTHY
         </GameButton>

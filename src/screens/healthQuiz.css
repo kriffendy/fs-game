@@ -20,6 +20,11 @@
   align-items: center;
 }
 
+.health-quiz-score-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .game-img {
   border-radius: 20px;
   width: 250px;
@@ -31,6 +36,20 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+.health-quiz-score-label {
+  margin: 0 0 5px 0;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.health-quiz-score {
+  margin: 0 0 50px 0;
+  font-size: 36px;
+  font-weight: 800;
+  color: red;
 }
 
 .health-quiz-question {
@@ -45,4 +64,16 @@
 
 .explore-other-text:hover {
   cursor: pointer;
+}
+
+.correct-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: green;
+}
+
+.wrong-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: red;
 }

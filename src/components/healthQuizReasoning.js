@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import GameButton from "./gameButton";
 import { Fade } from "@mui/material";
 import { useEffect, useState } from "react";
+import "../screens/healthQuiz.css";
 
 const HealthQuizReasoning = ({
   desc,
@@ -9,6 +10,7 @@ const HealthQuizReasoning = ({
   setCurrentContentIndex,
   currentContentIndex,
   contentLength,
+  prevCorrect,
 }) => {
   const navigate = useNavigate();
   const [showText, setShowText] = useState(false);
@@ -21,6 +23,15 @@ const HealthQuizReasoning = ({
 
   return (
     <div>
+      {prevCorrect ? (
+        <Fade in={showText} timeout={1000}>
+          <p className="correct-text">Correct!</p>
+        </Fade>
+      ) : (
+        <Fade in={showText} timeout={1000}>
+          <p className="wrong-text">Wrong!</p>
+        </Fade>
+      )}
       <Fade in={showText} timeout={1000}>
         <p className="health-quiz-desc">{desc}</p>
       </Fade>
