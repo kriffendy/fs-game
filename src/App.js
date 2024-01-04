@@ -9,9 +9,9 @@ import GameScreen from "./screens/gameScreen";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<MainMenu />} />
+        <Route exact path="/" element={<MainMenu />} />
         <Route
           path="/textClassification"
           element={
