@@ -6,14 +6,19 @@
 }
 
 .text-classification-title {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 700;
 }
 
-.text-game-score-title {
-  font-size: 22px;
+.text-classification-instructions {
+  font-size: 18px;
   font-weight: 500;
-  margin-bottom: 5px;
+}
+
+.text-game-score-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 20px 0 5px 0;
 }
 
 .text-game-score {
@@ -37,11 +42,18 @@
 
 .flex-container {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-game-buttons-container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
 .text-game-timer {
   font-size: 28px;
   font-weight: 700;
+  text-align: center;
 }

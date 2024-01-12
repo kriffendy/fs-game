@@ -4,12 +4,10 @@ import { useNavigate } from "react-router-dom";
 const MenuButton = (props) => {
   const navigate = useNavigate();
   return (
-    <button
-      className="menuButton"
-      onClick={() => navigate(props.navigationPath)}
-    >
-      {props.text}
-    </button>
+    <div className="menuButton" onClick={() => navigate(props.path)}>
+      <p className="main-menu-button-title">{props.text}</p>
+      <p className="main-menu-button-desc">{props.desc}</p>
+    </div>
   );
 };
 

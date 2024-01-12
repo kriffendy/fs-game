@@ -16,7 +16,10 @@ const GameScreen = (props) => {
   return (
     <div>
       <Fade in={fadeIn} timeout={1000}>
-        <p className="game-title">{props.gameTitle}</p>
+        <div>
+          <p className="game-title">{props.gameTitle}</p>
+          <p className="game-desc">{props.gameDesc}</p>
+        </div>
       </Fade>
       <div className="flex-container">
         <div className="game-container">{props.children}</div>

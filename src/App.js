@@ -15,7 +15,10 @@ function App() {
         <Route
           path="/textClassification"
           element={
-            <GameScreen gameTitle="Text Classification Memory Game">
+            <GameScreen
+              gameTitle="Text Classification Memory Game"
+              gameDesc="A memory game where you decide whether a word has already been shown or not."
+            >
               <TextClassificationGame />
             </GameScreen>
           }
@@ -28,7 +31,10 @@ function App() {
         <Route
           path="/healthQuiz"
           element={
-            <GameScreen gameTitle="Healthy Habits Game Classification">
+            <GameScreen
+              gameTitle="Healthy Habits Game Classification"
+              gameDesc="A health-focused game where you decide whether habits depicted in images represent a healthy or unhealthy habit"
+            >
               <HealthQuiz />
             </GameScreen>
           }

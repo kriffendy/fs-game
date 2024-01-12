@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./textClassification.css";
 import "../components/gameButton.css";
+import { Fade } from "@mui/material";
+import TextClassificationButton from "../components/TextClassificationButton";
 
 const words = [
   "Fever",
@@ -43,8 +45,15 @@ const TextClassificationGame = () => {
   const [score, setScore] = useState(0);
   const [storedWordsSet, setStoredWordsSet] = useState(new Set());
   const [currentWordObj, setCurrentWordObj] = useState(null);
+  const [fadeInInstructionsText, setFadeInInstructionsText] = useState(false);
   const [timer, setTimer] = useState(20);
   const [isTimerActive, setIsTimerActive] = useState(false);
+  const [renderInstructions, setRenderInstructions] = useState(false);
+  const [renderGame, setRenderGame] = useState(false);
+
+  useEffect(() => {
+    setFadeInInstructionsText(true);
+  }, []);
 
   useEffect(() => {
     let countdown;
@@ -89,8 +98,37 @@ const TextClassificationGame = () => {
     setStoredWordsSet(new Set());
     setCurrentWordObj(null);
   };
-  const GameButton = (props) => {
+
+  const start = () => {
+    handleStartTimer();
+    getNewWordInstance();
+  };
+
+  const clickSeenBtn = () => {
+    if (storedWordsSet.has(currentWordObj.index)) setScore(score + 1);
+    addWordToSet(currentWordObj.index);
+    getNewWordInstance();
+  };
+
+  const clickNewBtn = () => {
+    if (storedWordsSet.has(currentWordObj.index) == false) setScore(score + 1);
+    addWordToSet(currentWordObj.index);
+    getNewWordInstance();
+  };
+
+  const TextGameButton = (props) => {
+    // const [fadeInGameButton, setFadeInGameButton] = useState(false);
+    // const [fadedYet, setFadedYet] = useState(false);
+
+    // useEffect(() => {
+    //   if (!fadedYet) {
+    //     setFadeInGameButton(true);
+    //     setFadedYet(true);
+    //   }
+    // }, [fadedYet]);
+
     return (
+      // <Fade in={fadeInGameButton} timeout={1000}>
       <button
         onClick={() => {
           //if button option = "BACK TO MAIN"
@@ -119,22 +157,23 @@ const TextClassificationGame = () => {
           }
         }}
         className="game-button"
+        style={{ transitionDelay: "1000ms" }}
       >
         {gameButtonOptions[props.gameButtonIndex]}
       </button>
+      // </Fade>
     );
   };
 
   return (
     <div>
       <div className="text-classification-game-container">
-        <p className="text-classification-title">Text classification</p>
-        <p className="text-game-score-title">Current score:</p>
-        <p className="text-game-score">{score}</p>
         {currentWordObj ? (
-          <>
+          <div className="text-classification-game-container">
+            <p className="text-game-score-title">Current score:</p>
+            <p className="text-game-score">{score}</p>
             <p className="text-game-timer">
-              Time left: <p style={{ color: "red" }}>{timer}s</p>
+              Time left: <p style={{ color: "red" }}>{timer}:00</p>
             </p>
             <p className="text-game-prompt">Displayed word:</p>
             <p className="text-game-current-word">{currentWordObj.word}</p>
@@ -145,19 +184,44 @@ const TextClassificationGame = () => {
                 marginBottom: "30px",
               }}
             >
-              <div className="flex-container">
-                <GameButton gameButtonIndex={1} />
-                <GameButton gameButtonIndex={3} />
-                <GameButton gameButtonIndex={4} />
+              <div className="text-game-buttons-container">
+                <TextGameButton gameButtonIndex={1} />
+                <TextGameButton gameButtonIndex={3} />
+                <TextGameButton gameButtonIndex={4} />
               </div>
             </div>
-            <GameButton gameButtonIndex={0} />
-          </>
+            {/* <GameButton gameButtonIndex={0} /> */}
+          </div>
         ) : (
           <div style={{ width: "600px" }}>
+            <Fade in={fadeInInstructionsText} timeout={1000}>
+              <div>
+                <p className="text-classification-title">Instructions:</p>
+
+                <p className="text-classification-instructions">
+                  1. Read the displayed word and decide if it has been shown
+                  before or not.
+                </p>
+                <p className="text-classification-instructions">
+                  2. Click "Seen" if you believe the word has been displayed
+                  before, or click "New" if you think it hasn't.
+                </p>
+                <p className="text-classification-instructions">
+                  3.Score 1 point for each correct response, and a new word will
+                  be automatically shown for the next decision.
+                </p>
+              </div>
+            </Fade>
+            <Fade in={fadeInInstructionsText} timeout={1000}>
+              <div className="text-classification-game-container">
+                <p className="text-game-score-title">Current score:</p>
+                <p className="text-game-score">{score}</p>
+              </div>
+            </Fade>
+
             <div className="flex-container">
-              <GameButton gameButtonIndex={0} />
-              <GameButton gameButtonIndex={2} />
+              {/* <GameButton gameButtonIndex={0} /> */}
+              <TextGameButton gameButtonIndex={2} timeout={1000} />
             </div>
           </div>
         )}
