@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/fs-game/static/css/main.03dbbafc.css",
-    "main.js": "/fs-game/static/js/main.6a3107ee.js",
+    "main.css": "/fs-game/static/css/main.51457b9f.css",
+    "main.js": "/fs-game/static/js/main.93bd5947.js",
     "static/js/787.d4aba7ab.chunk.js": "/fs-game/static/js/787.d4aba7ab.chunk.js",
     "static/media/fs-playvideogame-hquiz.png": "/fs-game/static/media/fs-playvideogame-hquiz.a91e89d4f8f6c0515c92.png",
     "static/media/fs-washhand-hquiz.png": "/fs-game/static/media/fs-washhand-hquiz.bb6991ce77303b039736.png",
@@ -15,12 +15,12 @@
     "static/media/fs-jogging-hquiz.jpg": "/fs-game/static/media/fs-jogging-hquiz.797f13ee37d11db6ac86.jpg",
     "static/media/logo.svg": "/fs-game/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/fs-game/index.html",
-    "main.03dbbafc.css.map": "/fs-game/static/css/main.03dbbafc.css.map",
-    "main.6a3107ee.js.map": "/fs-game/static/js/main.6a3107ee.js.map",
+    "main.51457b9f.css.map": "/fs-game/static/css/main.51457b9f.css.map",
+    "main.93bd5947.js.map": "/fs-game/static/js/main.93bd5947.js.map",
     "787.d4aba7ab.chunk.js.map": "/fs-game/static/js/787.d4aba7ab.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.03dbbafc.css",
-    "static/js/main.6a3107ee.js"
+    "static/css/main.51457b9f.css",
+    "static/js/main.93bd5947.js"
   ]
 }
