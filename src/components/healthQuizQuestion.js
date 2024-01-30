@@ -7,7 +7,9 @@ const HealthQuizQuestion = ({
   setScore,
   setIsShowingQuestion,
   setPrevCorrect,
+  setShuffledContent,
   isHealthy,
+  currentContentIndex,
 }) => {
   const [showQuestion, setShowQuestion] = useState(false);
 
@@ -29,7 +31,27 @@ const HealthQuizQuestion = ({
             if (isHealthy) {
               setScore((score) => score + 1);
               setPrevCorrect(true);
-            } else setPrevCorrect(false);
+              setShuffledContent((shuffledContent) =>
+                shuffledContent.map((item, index) => {
+                  if (index == currentContentIndex) {
+                    return { ...item, isCorrect: true };
+                  } else {
+                    return item;
+                  }
+                })
+              );
+            } else {
+              setPrevCorrect(false);
+              setShuffledContent((shuffledContent) =>
+                shuffledContent.map((item, index) => {
+                  if (index == currentContentIndex) {
+                    return { ...item, isCorrect: false };
+                  } else {
+                    return item;
+                  }
+                })
+              );
+            }
             setIsShowingQuestion(false);
           }}
           style={{ backgroundColor: "#5dbea3" }}
@@ -41,7 +63,27 @@ const HealthQuizQuestion = ({
             if (!isHealthy) {
               setScore((score) => score + 1);
               setPrevCorrect(true);
-            } else setPrevCorrect(false);
+              setShuffledContent((shuffledContent) =>
+                shuffledContent.map((item, index) => {
+                  if (index == currentContentIndex) {
+                    return { ...item, isCorrect: true };
+                  } else {
+                    return item;
+                  }
+                })
+              );
+            } else {
+              setPrevCorrect(false);
+              setShuffledContent((shuffledContent) =>
+                shuffledContent.map((item, index) => {
+                  if (index == currentContentIndex) {
+                    return { ...item, isCorrect: false };
+                  } else {
+                    return item;
+                  }
+                })
+              );
+            }
             setIsShowingQuestion(false);
           }}
           style={{ backgroundColor: "#dd7973" }}

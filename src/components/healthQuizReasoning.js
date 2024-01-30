@@ -11,6 +11,7 @@ const HealthQuizReasoning = ({
   currentContentIndex,
   contentLength,
   prevCorrect,
+  setGameEnded,
 }) => {
   const navigate = useNavigate();
   const [showText, setShowText] = useState(false);
@@ -47,7 +48,7 @@ const HealthQuizReasoning = ({
       ) : (
         <GameButton
           onClick={() => {
-            navigate("/");
+            setGameEnded((gameEnded) => true);
           }}
         >
           The game has finished!

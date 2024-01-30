@@ -4,7 +4,6 @@ import "./App.css";
 import MainMenu from "./screens/mainMenu";
 import HealthQuiz from "./screens/healthQuiz";
 import TextClassificationGame from "./screens/textClassification";
-import HealthClassificationGame from "./screens/healthClassification";
 import GameScreen from "./screens/gameScreen";
 
 function App() {
@@ -24,10 +23,6 @@ function App() {
           }
         />
 
-        <Route
-          path="/healthClassification"
-          element={<HealthClassificationGame />}
-        />
         <Route
           path="/healthQuiz"
           element={

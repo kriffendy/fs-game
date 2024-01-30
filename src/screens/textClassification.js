@@ -3,42 +3,18 @@ import { useState, useEffect } from "react";
 import "./textClassification.css";
 import "../components/gameButton.css";
 import { Fade } from "@mui/material";
+import { db } from "../config/firebase";
+import { getDocs, collection } from "firebase/firestore";
 import TextClassificationButton from "../components/TextClassificationButton";
 
-const words = [
-  "Fever",
-  "Cough",
-  "Headache",
-  "Fatigue",
-  "Nausea",
-  "Sore throat",
-  "Shortness of breath",
-  "Dizziness",
-  "Insomnia",
-  "Stress",
-  "Anxiety",
-  "Depression",
-  "Hydration",
-  "Exercise",
-  "Nutrition",
-  "Sleep",
-  "Handwashing",
-  "Vaccination",
-  "Stretching",
-  "Meditation",
-  "Walking",
-  "Fresh air",
-  "Sunlight",
-  "Balanced diet",
-  "Healthy snacks",
-  "Regular check-ups",
-  "Staying active",
-  "Proper hygiene",
-  "Mindfulness",
-  "Positive mindset",
+const gameButtonOptions = [
+  "BACK TO MAIN",
+  "RESTART",
+  "START",
+  "SEEN",
+  "NEW",
+  "PLAY AGAIN",
 ];
-
-const gameButtonOptions = ["BACK TO MAIN", "RESTART", "START", "SEEN", "NEW"];
 
 const TextClassificationGame = () => {
   const navigate = useNavigate();
@@ -48,11 +24,29 @@ const TextClassificationGame = () => {
   const [fadeInInstructionsText, setFadeInInstructionsText] = useState(false);
   const [timer, setTimer] = useState(20);
   const [isTimerActive, setIsTimerActive] = useState(false);
-  const [renderInstructions, setRenderInstructions] = useState(false);
-  const [renderGame, setRenderGame] = useState(false);
+  const [wordsList, setWordsList] = useState([]);
+  const [gameEnded, setGameEnded] = useState(false);
+  const [prevScore, setPrevScore] = useState(0);
+
+  const wordsCollectionRef = collection(db, "textClassification");
 
   useEffect(() => {
     setFadeInInstructionsText(true);
+    const getWordsList = async () => {
+      try {
+        const data = await getDocs(wordsCollectionRef);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        console.log(filteredData[0].eyeCareSet1);
+        setWordsList(filteredData[0].eyeCareSet1);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getWordsList();
   }, []);
 
   useEffect(() => {
@@ -71,6 +65,8 @@ const TextClassificationGame = () => {
 
   useEffect(() => {
     if (timer === 0) {
+      setGameEnded(true);
+      setPrevScore(score);
       restart();
     }
   }, [timer]);
@@ -89,8 +85,8 @@ const TextClassificationGame = () => {
   };
 
   const getNewWordInstance = () => {
-    const randomIndex = Math.floor(Math.random() * words.length);
-    setCurrentWordObj({ index: randomIndex, word: words[randomIndex] });
+    const randomIndex = Math.floor(Math.random() * wordsList.length);
+    setCurrentWordObj({ index: randomIndex, word: wordsList[randomIndex] });
   };
 
   const restart = () => {
@@ -100,6 +96,7 @@ const TextClassificationGame = () => {
   };
 
   const start = () => {
+    setGameEnded(false);
     handleStartTimer();
     getNewWordInstance();
   };
@@ -136,7 +133,7 @@ const TextClassificationGame = () => {
           //if button option = "RESTART"
           else if (props.gameButtonIndex == 1) restart();
           //if button option = "START"
-          else if (props.gameButtonIndex == 2) {
+          else if (props.gameButtonIndex == 2 || props.gameButtonIndex == 5) {
             //TODO: add start timer
             handleStartTimer();
             getNewWordInstance();
@@ -194,35 +191,46 @@ const TextClassificationGame = () => {
           </div>
         ) : (
           <div style={{ width: "600px" }}>
-            <Fade in={fadeInInstructionsText} timeout={1000}>
-              <div>
-                <p className="text-classification-title">Instructions:</p>
-
-                <p className="text-classification-instructions">
-                  1. Read the displayed word and decide if it has been shown
-                  before or not.
-                </p>
-                <p className="text-classification-instructions">
-                  2. Click "Seen" if you believe the word has been displayed
-                  before, or click "New" if you think it hasn't.
-                </p>
-                <p className="text-classification-instructions">
-                  3.Score 1 point for each correct response, and a new word will
-                  be automatically shown for the next decision.
-                </p>
-              </div>
-            </Fade>
-            <Fade in={fadeInInstructionsText} timeout={1000}>
+            {gameEnded ? (
               <div className="text-classification-game-container">
-                <p className="text-game-score-title">Current score:</p>
-                <p className="text-game-score">{score}</p>
+                <p className="text-classification-title">
+                  Congratulations! You did well!
+                </p>
+                <p className="text-game-score-title">Previous score:</p>
+                <p className="text-game-score">{prevScore}</p>
+                <TextGameButton gameButtonIndex={5} timeout={1000} />
               </div>
-            </Fade>
+            ) : (
+              <>
+                <Fade in={fadeInInstructionsText} timeout={1000}>
+                  <div>
+                    <p className="text-classification-title">Instructions:</p>
 
-            <div className="flex-container">
-              {/* <GameButton gameButtonIndex={0} /> */}
-              <TextGameButton gameButtonIndex={2} timeout={1000} />
-            </div>
+                    <p className="text-classification-instructions">
+                      1. Read the displayed word and decide if it has been shown
+                      before or not.
+                    </p>
+                    <p className="text-classification-instructions">
+                      2. Click "Seen" if you believe the word has been displayed
+                      before, or click "New" if you think it hasn't.
+                    </p>
+                    <p className="text-classification-instructions">
+                      3.Score 1 point for each correct response, and a new word
+                      will be automatically shown for the next decision.
+                    </p>
+                  </div>
+                </Fade>
+                <Fade in={fadeInInstructionsText} timeout={1000}>
+                  <div className="text-classification-game-container">
+                    <p className="text-game-score-title">Current score:</p>
+                    <p className="text-game-score">{score}</p>
+                  </div>
+                </Fade>
+                <div className="flex-container">
+                  <TextGameButton gameButtonIndex={2} timeout={1000} />
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
