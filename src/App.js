@@ -6,6 +6,7 @@ import HealthQuiz from "./screens/healthQuiz";
 import TextClassificationGame from "./screens/textClassification";
 import GameScreen from "./screens/gameScreen";
 
+
 function App() {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>

@@ -1,3 +1,11 @@
+.img-game-prompt-splitter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+
 .horizontal-flex-container {
   width: 80%;
   height: 70vh;
@@ -32,12 +40,6 @@
   margin-right: 50px;
 }
 
-.img-game-prompt-splitter {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
 .health-quiz-score-label {
   margin: 0 0 5px 0;
   padding: 0;
@@ -69,14 +71,117 @@
   cursor: pointer;
 }
 
-.correct-text {
+.correct-text{
   font-size: 22px;
   font-weight: 700;
   color: green;
 }
 
-.wrong-text {
+.wrong-text{
   font-size: 22px;
   font-weight: 700;
   color: red;
+}
+
+@media (max-width: 700px) {
+  .img-game-prompt-splitter {
+    flex-direction: column;
+  }
+  .game-img {
+    align-self: center;
+    justify-self: center;
+    margin: 0 0 20px 0;
+  }
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 575.98px) {
+  .game-img {
+    height: 180px;
+    width: 180px;
+  }
+  .health-quiz-score-label {
+    font-size: 18px;
+  }
+  .health-quiz-score {
+    font-size: 28px;
+  }
+  .health-quiz-desc {
+    font-size: 18px;
+  }
+  .health-quiz-question {
+    font-size: 18px;
+  }
+  .text-button {
+    font-size: 16px;
+  }
+}
+
+/* Small devices (tablets) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .game-img {
+    height: 190px;
+    width: 190px;
+  }
+  .health-quiz-score-label {
+    font-size: 21px;
+  }
+  .health-quiz-score {
+    font-size: 31px;
+  }
+  .health-quiz-desc {
+    font-size: 20px;
+  }
+  .health-quiz-question {
+    font-size: 20px;
+  }
+  .text-button {
+    font-size: 18px;
+  }
+}
+
+/* Medium devices (desktops) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .game-img {
+    height: 180px;
+    width: 180px;
+  }
+  .health-quiz-score-label {
+    font-size: 22px;
+  }
+  .health-quiz-score {
+    font-size: 34px;
+  }
+  .health-quiz-desc {
+    font-size: 22px;
+  }
+  .health-quiz-question {
+    font-size: 22px;
+  }
+  .text-button {
+    font-size: 20px;
+  }
+}
+
+/* Large devices (large desktops) */
+@media (min-width: 992px) {
+  .game-img {
+    height: 180px;
+    width: 180px;
+  }
+  .health-quiz-score-label {
+    font-size: 25px;
+  }
+  .health-quiz-score {
+    font-size: 37px;
+  }
+  .health-quiz-desc {
+    font-size: 24px;
+  }
+  .health-quiz-question {
+    font-size: 24px;
+  }
+  .text-button {
+    font-size: 22px;
+  }
 }

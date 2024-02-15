@@ -17,27 +17,6 @@ import { Fade } from "@mui/material";
 import GameButton from "./gameButton";
 import "../screens/healthQuiz.css";
 
-// const healthyHabitCols = [
-//   { field: "id", headerName: "#", width: 30 },
-//   {
-//     field: "healthyHabit",
-//     headerName: "Healthy habit",
-//     width: 200,
-//   },
-//   { field: "healthyHabitReason", headerName: "Reason", width: 400 },
-//   { field: "result", headerName: "Result", width: 50 },
-// ];
-
-// const unhealthyHabitCols = [
-//   { field: "id", headerName: "#", width: 30 },
-//   {
-//     field: "unhealthyHabit",
-//     headerName: "Unhealthy habit",
-//     width: 200,
-//   },
-//   { field: "unhealthyHabitReason", headerName: "Reason", width: 800 },
-//   { field: "result", headerName: "Result", width: 200 },
-// ];
 
 const StyledTableCell = styled(TableCell)(({ theme, isCorrect }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -63,7 +42,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: "#f7f7f7",
   },
-  // hide last border
   "&:last-child td, &:last-child th": {
     border: 0,
   },

@@ -26,11 +26,11 @@ const HealthQuizReasoning = ({
     <div>
       {prevCorrect ? (
         <Fade in={showText} timeout={1000}>
-          <p className="correct-text">Correct!</p>
+          <p className="correct-text text-button">Correct!</p>
         </Fade>
       ) : (
         <Fade in={showText} timeout={1000}>
-          <p className="wrong-text">Wrong!</p>
+          <p className="wrong-text text-button">Wrong!</p>
         </Fade>
       )}
       <Fade in={showText} timeout={1000}>
