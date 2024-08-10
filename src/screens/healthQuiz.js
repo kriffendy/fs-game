@@ -8,7 +8,7 @@ import Jogging from "../assets/fs-jogging-hquiz.jpg";
 import PlayVidGame from "../assets/fs-playvideogame-hquiz.png";
 import Salmon from "../assets/fs-salmon-hquiz.png";
 import WashHand from "../assets/fs-washhand-hquiz.png";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import HealthQuizReasoning from "../components/healthQuizReasoning";
 import HealthQuizQuestion from "../components/healthQuizQuestion";
@@ -108,7 +108,7 @@ const HealthQuiz = () => {
     setShuffledContent(getShuffledContent());
   }, []);
 
-  if (!shuffledContent) return <></>;
+  if (!shuffledContent) return <React.Fragment></React.Fragment>;
   if (gameEnded)
     return (
       <div style={{ height: "100%", position: "relative", marginTop: "30px" }}>
