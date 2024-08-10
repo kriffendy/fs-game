@@ -108,7 +108,7 @@ const HealthQuiz = () => {
     setShuffledContent(getShuffledContent());
   }, []);
 
-  if (!shuffledContent) return <React.Fragment></React.Fragment>;
+  if (!shuffledContent) return <div></div>;
   if (gameEnded)
     return (
       <div style={{ height: "100%", position: "relative", marginTop: "30px" }}>
