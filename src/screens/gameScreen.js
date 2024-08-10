@@ -16,21 +16,20 @@ const GameScreen = (props) => {
   return (
     <div className="page-container">
       <Fade in={fadeIn} timeout={1000}>
-        <div style={{maxHeight: '200px'}}>
+        <div style={{ maxHeight: "200px" }}>
           <p className="game-title">{props.gameTitle}</p>
         </div>
       </Fade>
       <div className="game-primary-container">
         <div className="game-secondary-container">{props.children}</div>
       </div>
-      <footer className="explore-other-footer">
+      {/* <footer className="explore-other-footer">
         <Fade in={fadeIn} timeout={1000}>
           <p className="explore-other-text" onClick={() => navigate("/")}>
             Explore other games &gt;
           </p>
         </Fade>
-      </footer>
-
+      </footer> */}
     </div>
   );
 };

@@ -65,10 +65,10 @@
 
 .game-secondary-container {
   width: 90%;
+  height: 100%;
   /* display: flex;
   flex-direction: column; */
 }
-
 
 .flex-column {
   display: flex;
@@ -82,7 +82,6 @@
   margin-left: 40px;
   margin-bottom: 80px;
 }
-
 
 .explore-other-footer {
   max-height: 100px;

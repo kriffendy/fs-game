@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import HealthQuizReasoning from "../components/healthQuizReasoning";
 import HealthQuizQuestion from "../components/healthQuizQuestion";
 import HealthQuizSummaryTable from "../components/healthQuizSummaryTable";
+import HealthQuizProgressBar from "../components/healthQuizProgessBar";
 import { Fade } from "@mui/material";
 import "./healthQuiz.css";
 
@@ -21,61 +22,61 @@ export const content = [
     imgSrc: TvAfar,
     habit: "Watching TV from afar",
     isHealthy: true,
-    desc: "Watching TV from a far distance reduces eye strain, prevents fatigue, and protects our eyes from potential problems caused by sitting too close.",
+    desc: "Watch TV from afar reduces eye strain, prevent eye conditions",
   },
   {
     imgSrc: JunkFood,
     habit: "Eating hamburgers",
     isHealthy: false,
-    desc: "Hamburgers have lots of fat and can make you gain weight. They're often cooked with oil and served with toppings that are high in fat and calories. Eating too many hamburgers can be bad for your health.",
+    desc: "Contains a lot of fat, can cause heart disease if overeaten",
   },
   {
     imgSrc: ReadBookDark,
     habit: "Reading in darkness",
     isHealthy: false,
-    desc: "Reading in low light strains eyes, causing discomfort, headaches, and reduced focus. Well-lit conditions are advised to prevent issues.",
+    desc: "Reading in low light strains eyes, can cause eye diseases",
   },
   {
     imgSrc: Jogging,
     habit: "Jogging",
     isHealthy: true,
-    desc: "Exercise and running promote overall cardiovascular health, which improves blood flow to the eyes, reducing the risk of age-related macular degeneration and other eye conditions. It also allows us to take a break from looking at screens especially in today's digital world.",
+    desc: "Promotes overall cardiovascular health, improve blood flow to eyes",
   },
   {
     imgSrc: WashHand,
     habit: "Handwashing",
     isHealthy: true,
-    desc: "Hand washing prevents the spread of bacteria and viruses, reducing the risk of eye infections when touching eyes or face. Numerous prevalent eye diseases are contagious and can easily spread from one person to another.",
+    desc: "Prevents spread of germs and diseases, reduce risk of contracting diseases",
   },
   {
     imgSrc: RubEyes,
     habit: "Rubbing eyes",
     isHealthy: false,
-    desc: "Rubbing your eyes can introduce dirt, bacteria, or irritants, leading to infections or damage. It may also increase eye pressure. Hence, it is good to avoid rubbing your eyes.",
+    desc: "May introduce germs and bacteria to the eyes, increases eye pressure",
   },
   {
     imgSrc: Salmon,
     habit: "Consuming salmon",
     isHealthy: true,
-    desc: "Salmon is rich in omega-3 fatty acids, particularly DHA, which supports retinal function, reduces inflammation, and may lower the risk of age-related macular degeneration, enhancing overall eye health.",
+    desc: "Salmon is rich in omega-3 fatty acids, supports retina, reduce inflammation, improve eye health",
   },
   {
     imgSrc: PlayVidGame,
     habit: "Playing video games",
     isHealthy: false,
-    desc: "Extended screen time in video games can cause eye strain, dryness, and discomfort due to prolonged focus, screen glare, and reduced blinking. Taking breaks is important especially for children who are still growing up.",
+    desc: "Causes eye strain and pressure, cause addiction as well",
   },
   {
     imgSrc: HealthyFood,
     habit: "Eating fruits and vegetables",
     isHealthy: true,
-    desc: "Vegetables and fruits are healthy because they contain important vitamins, minerals, and fiber that help our bodies grow, stay strong, and work properly. They can make us feel energized, help our immune system, and keep our bodies working well.",
+    desc: "Contains nutrients that keep us healthy, and vitamins improving eye health",
   },
   {
     imgSrc: TvNear,
     habit: "Watching TV too close",
     isHealthy: false,
-    desc: "Watching TV too close to the screen can strain our eyes and make them tired. It can also lead to eye discomfort, headaches, and blurry vision. Sitting farther away helps our eyes relax, preventing eye problems and ensuring healthier screen viewing.",
+    desc: "Causes eye strain and pressure, try to watch from a farther distance",
   },
 ];
 
@@ -109,9 +110,17 @@ const HealthQuiz = () => {
 
   if (!shuffledContent) return <></>;
   if (gameEnded)
-    return <HealthQuizSummaryTable shuffledContent={shuffledContent} />;
+    return (
+      <div style={{ height: "100%", position: "relative", marginTop: "30px" }}>
+        <HealthQuizSummaryTable shuffledContent={shuffledContent} />
+        <HealthQuizProgressBar
+          length={10}
+          currentIndex={currentContentIndex + 1}
+        />
+      </div>
+    );
   return (
-    <div>
+    <div style={{ height: "100%", position: "relative", marginTop: "30px" }}>
       <div className="health-quiz-score-container">
         <p className="health-quiz-score-label">Current score:</p>
         <p className="health-quiz-score">{score}</p>
@@ -122,7 +131,7 @@ const HealthQuiz = () => {
           <Fade in={showImgFadeAnimation} timeout={1000}>
             <img
               src={shuffledContent[currentContentIndex].imgSrc}
-              className="game-img"
+              className="game-img img-height-property"
             />
           </Fade>
 
@@ -148,6 +157,7 @@ const HealthQuiz = () => {
           )}
         </div>
       </div>
+      <HealthQuizProgressBar length={10} currentIndex={currentContentIndex} />
     </div>
   );
 };

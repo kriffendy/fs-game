@@ -10,6 +10,7 @@ import {
   TableRow,
   Paper,
   tableCellClasses,
+  tableRowClasses,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState, useEffect } from "react";
@@ -17,19 +18,18 @@ import { Fade } from "@mui/material";
 import GameButton from "./gameButton";
 import "../screens/healthQuiz.css";
 
-
 const StyledTableCell = styled(TableCell)(({ theme, isCorrect }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#d0d0d0",
     color: theme.palette.common.black,
-    fontSize: 18,
+    fontSize: 14,
     padding: "20px",
     fontWeight: 700,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 20,
+    fontSize: 14,
+    backgroundColor: isCorrect ? "#5DBE7Ecc" : "#DE5D55cc",
     "&:last-child": {
-      color: isCorrect ? "#74b72e" : "#d2122e",
       fontWeight: 700,
     },
     "&:nth-child(2)": {
@@ -38,9 +38,9 @@ const StyledTableCell = styled(TableCell)(({ theme, isCorrect }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: "#f7f7f7",
+const StyledTableRow = styled(TableRow)(({ theme, isCorrect }) => ({
+  [`&.${tableRowClasses.body}`]: {
+    backgroundColor: isCorrect ? "#74b72e" : "#d2122e",
   },
   "&:last-child td, &:last-child th": {
     border: 0,
@@ -82,7 +82,7 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
 
   if (healthyHabitRows && unhealthyHabitRows) {
     return (
-      <div>
+      <div style={{ height: "100%" }}>
         <Fade in={fadedIn} timeout={1000}>
           <p
             style={{
@@ -96,11 +96,11 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
         </Fade>
         <Fade in={fadedIn} timeout={1000}>
           <div
-            style={{ padding: "50px 30px", overflow: "auto", height: "350px" }}
+            style={{ padding: "50px 30px", overflow: "auto", height: "65%" }}
           >
             <TableContainer component={Paper}>
               <Table
-                sx={{ minWidth: 650 }}
+                sx={{ minWidth: 250 }}
                 size="small"
                 aria-label="a dense table"
               >
@@ -110,7 +110,6 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
                       Healthy Habit
                     </StyledTableCell>
                     <StyledTableCell align="center">Reason</StyledTableCell>
-                    <StyledTableCell align="center">Result</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -118,18 +117,20 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
                     <StyledTableRow
                       key={item.healthyHabit}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                      isCorrect={item.result === "Correct"}
                     >
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell
+                        component="th"
+                        scope="row"
+                        isCorrect={item.result === "Correct"}
+                      >
                         {item.healthyHabit}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {item.healthyHabitReason}
                       </StyledTableCell>
                       <StyledTableCell
                         align="right"
                         isCorrect={item.result === "Correct"}
                       >
-                        {item.result}
+                        {item.healthyHabitReason}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
@@ -139,7 +140,7 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
             <div style={{ height: "50px" }}></div>
             <TableContainer component={Paper}>
               <Table
-                sx={{ minWidth: 650 }}
+                sx={{ minWidth: 250 }}
                 size="small"
                 aria-label="a dense table"
               >
@@ -149,7 +150,6 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
                       Unhealthy Habit
                     </StyledTableCell>
                     <StyledTableCell align="center">Reason</StyledTableCell>
-                    <StyledTableCell align="center">Result</StyledTableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -157,18 +157,20 @@ const HealthQuizSummaryTable = ({ shuffledContent }) => {
                     <StyledTableRow
                       key={item.unhealthyHabit}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                      isCorrect={item.result === "Correct"}
                     >
-                      <StyledTableCell component="th" scope="row">
+                      <StyledTableCell
+                        component="th"
+                        scope="row"
+                        isCorrect={item.result === "Correct"}
+                      >
                         {item.unhealthyHabit}
-                      </StyledTableCell>
-                      <StyledTableCell align="right">
-                        {item.unhealthyHabitReason}
                       </StyledTableCell>
                       <StyledTableCell
                         align="right"
                         isCorrect={item.result === "Correct"}
                       >
-                        {item.result}
+                        {item.unhealthyHabitReason}
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
